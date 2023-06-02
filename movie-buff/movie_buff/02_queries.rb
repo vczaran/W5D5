@@ -7,7 +7,9 @@ end
 
 def bad_years
   # List the years in which no movie with a rating above 8 was released.
-  Movie.select(:yr).group(:yr).where.not('movies.score > 8').pluck(:yr)
+  Movie.select(:yr).group(:yr).having("MAX(score) < 8").pluck(:yr)
+  
+  
   
 end
 
